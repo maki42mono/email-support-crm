@@ -1,0 +1,10 @@
+{% include '@autoresponder/greeting.html.twig' %}
+{% if email.hasContacts %}
+    {%- include '@autoresponder/request-registered.html.twig' -%}
+    {%- include '@autoresponder/check-faq.html.twig' -%}
+    {%- include '@autoresponder/adv-info-block.html.twig' -%}
+    {%- include '@autoresponder/check-spam.html.twig' -%}
+{% else %}
+    {%- include '@autoresponder/add-contatcs.html.twig' -%}
+{% endif %}
+{% include '@autoresponder/footer.html.twig' %}

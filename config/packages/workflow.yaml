@@ -1,0 +1,47 @@
+framework:
+  workflows:
+    comment:
+      type: state_machine
+      audit_trail:
+        enabled: "%kernel.debug%"
+      marking_store:
+        type: 'method'
+        property: 'state'
+      supports:
+        - App\Entity\InboxMail
+      initial_marking: new_to_check
+      places:
+        - new_to_check
+        - our_bcc
+        - potential_req_id
+        - has_no_req_id
+        - has_valid_req_id
+        - has_invalid_req_id
+        - sent_autoreplay_to_new
+        - potential_spam
+        - prepare_for_send
+      transitions:
+        has_no_req_id:
+          from: new_to_check
+          to: has_no_req_id
+        has_something:
+          from: new_to_check
+          to: potential_req_id
+        our_bcc:
+          from: has_no_req_id
+          to: our_bcc
+        is_valid:
+          from: potential_req_id
+          to: has_valid_req_id
+        is_not_valid:
+          from: potential_req_id
+          to: has_invalid_req_id
+        reject:
+          from: has_no_req_id
+          to: potential_spam
+        prepare_for_send:
+          from: has_no_req_id
+          to: prepare_for_send
+        sent_new:
+          from: prepare_for_send
+          to: sent_autoreplay_to_new

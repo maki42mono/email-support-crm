@@ -1,0 +1,8 @@
+services:
+  test.App\InboxMail\InboxMailService:
+    alias: 'App\InboxMail\InboxMailService'
+    public: true
+
+  test.Symfony\Component\Mailer\MailerInterface:
+    alias: 'Symfony\Component\Mailer\MailerInterface'
+    public: true

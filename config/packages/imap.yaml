@@ -1,0 +1,6 @@
+imap:
+    connections:
+        rating_tagline_ru:
+            mailbox: "{mail.tagline.ru:993/imap/ssl/novalidate-cert}INBOX"
+            username: "rating@tagline.ru"
+            password: '%env(RATING_TAGLINE_RU_PSW)%'

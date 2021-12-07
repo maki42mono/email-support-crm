@@ -1,0 +1,8 @@
+easy_admin:
+  entities:
+    InboxMail:
+      class: AppBundle\Entity\InboxMail
+      list:
+        fields:
+          #- { property: 'support', type: 'raw' }
+          #- { property: 'body', type: 'raw' }

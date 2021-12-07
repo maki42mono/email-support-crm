@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-###> doctrine/doctrine-bundle ###
+  ###> doctrine/doctrine-bundle ###
   database:
     image: postgres:${POSTGRES_VERSION:-13}-alpine
     environment:
@@ -13,12 +13,12 @@ services:
       - db-data:/var/lib/postgresql/data:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+  ###< doctrine/doctrine-bundle ###
   pgadmin:
     image: dpage/pgadmin4
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_EMAIL: ${POSTGRES_ADMIN:-admin@admin.com}
       PGADMIN_DEFAULT_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
     ports:
       - "5050:80"
@@ -30,6 +30,6 @@ services:
       - "15672:15672"
 
 volumes:
-###> doctrine/doctrine-bundle ###
+  ###> doctrine/doctrine-bundle ###
   db-data:
 ###< doctrine/doctrine-bundle ###
